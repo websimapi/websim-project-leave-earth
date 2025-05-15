@@ -18,6 +18,70 @@
                 <h2>The Challenge</h2>
                 <p>Current space travel is prohibitively expensive, requiring billions in funding and cutting-edge technology.</p>
                 <p>Our mission: Explore how everyday people could potentially build their own spacecraft from recycled materials.</p>
+                
+                <div class="principles-container">
+                    <h3>Core Principles</h3>
+                    <ul class="principles-list">
+                        <li><strong>Unconventional Thinking</strong>: Breaking away from traditional aerospace approaches</li>
+                        <li><strong>Resource Recycling</strong>: Repurposing everyday materials for space applications</li>
+                        <li><strong>Resilient Systems</strong>: Creating systems with multiple backups and alternatives</li>
+                        <li><strong>Open Knowledge</strong>: Sharing techniques and discoveries globally</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- New AI Scanner Section -->
+            <div class="ai-scanner-section">
+                <h2>AI Material Analysis</h2>
+                <p>Scan everyday objects to discover how they could be repurposed for spacecraft components.</p>
+                
+                <div class="scanner-interface">
+                    <div class="scanner-input">
+                        <label for="item-description">Describe an item you have (or upload a photo):</label>
+                        <textarea id="item-description" placeholder="E.g., an old laptop, pressure cooker, car alternator..."></textarea>
+                        
+                        <div class="upload-container">
+                            <button id="photo-upload-btn" class="secondary-btn">Upload Photo</button>
+                            <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                            <div id="photo-preview" class="photo-preview"></div>
+                        </div>
+                        
+                        <button id="analyze-btn" class="action-btn">Analyze Item</button>
+                    </div>
+                    
+                    <div class="analysis-results" id="analysis-results">
+                        <div class="results-placeholder">Analysis results will appear here...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Roadmap Section -->
+            <div class="roadmap-section">
+                <h2>Your Path to Space</h2>
+                <p>AI-generated step-by-step guidance customized to your resources and goals.</p>
+                
+                <div class="roadmap-container">
+                    <div class="roadmap-input">
+                        <label for="resources-input">What materials and skills do you have access to?</label>
+                        <textarea id="resources-input" placeholder="E.g., welding skills, access to scrap yard, programming knowledge..."></textarea>
+                        
+                        <label for="goal-input">Your space mission goal:</label>
+                        <select id="goal-input">
+                            <option value="suborbital">Suborbital Flight (100km)</option>
+                            <option value="orbit">Low Earth Orbit (200-400km)</option>
+                            <option value="lunar">Lunar Mission</option>
+                            <option value="custom">Custom Goal (specify below)</option>
+                        </select>
+                        
+                        <textarea id="custom-goal" placeholder="Describe your custom space mission goal..." style="display: none;"></textarea>
+                        
+                        <button id="generate-roadmap-btn" class="action-btn">Generate Roadmap</button>
+                    </div>
+                    
+                    <div class="roadmap-results" id="roadmap-results">
+                        <div class="results-placeholder">Your personalized roadmap will appear here...</div>
+                    </div>
+                </div>
             </div>
             
             <div class="simulation-container">
@@ -70,6 +134,58 @@
                 <button id="launch-btn" class="launch-btn">LAUNCH SPACECRAFT</button>
                 <div class="launch-animation" id="launch-animation">
                     <!-- Launch animation will be shown here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Alternative Systems Section -->
+        <div class="alt-systems-panel">
+            <h2>Alternative Systems</h2>
+            <p>Explore unconventional approaches to spacecraft systems with multiple backup options.</p>
+            
+            <div class="systems-grid">
+                <div class="system-card">
+                    <h3>Energy Sources</h3>
+                    <ul class="alt-options">
+                        <li>Modified photovoltaic arrays from consumer solar panels</li>
+                        <li>Thermal generators using waste heat</li>
+                        <li>Mechanical energy storage using recycled flywheels</li>
+                        <li>Biological fuel cells using waste material</li>
+                        <li>Radioisotope generators from smoke detector components</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3>Life Support</h3>
+                    <ul class="alt-options">
+                        <li>Algae-based oxygen generation systems</li>
+                        <li>Water recycling from modified home filtration</li>
+                        <li>Food production using vertical farming techniques</li>
+                        <li>Waste processing with mycelium decomposition</li>
+                        <li>Radiation shielding using water and organic material layering</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3>Propulsion Alternatives</h3>
+                    <ul class="alt-options">
+                        <li>Hybrid rockets using paraffin and liquid oxidizers</li>
+                        <li>Air-breathing rocket stages for lower atmosphere</li>
+                        <li>Electromagnetic tethers for orbital maneuvers</li>
+                        <li>Solar thermal propulsion for deep space</li>
+                        <li>Modified automotive engines for first-stage propulsion</li>
+                    </ul>
+                </div>
+                
+                <div class="system-card">
+                    <h3>Navigation & Control</h3>
+                    <ul class="alt-options">
+                        <li>Smartphone inertial sensors for attitude determination</li>
+                        <li>Modified webcams for star tracking</li>
+                        <li>Distributed computing systems using multiple microcontrollers</li>
+                        <li>Radio direction finding for positioning</li>
+                        <li>Manual backup systems using mechanical computers</li>
+                    </ul>
                 </div>
             </div>
         </div>
