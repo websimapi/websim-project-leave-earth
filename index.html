@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Leave Earth</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Project Leave Earth</h1>
+            <p class="tagline">Making space travel accessible to everyone</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="info-panel">
+                <h2>The Challenge</h2>
+                <p>Current space travel is prohibitively expensive, requiring billions in funding and cutting-edge technology.</p>
+                <p>Our mission: Explore how everyday people could potentially build their own spacecraft from recycled materials.</p>
+            </div>
+            
+            <div class="simulation-container">
+                <div class="spacecraft-builder">
+                    <h2>Build Your Spacecraft</h2>
+                    <div class="builder-interface">
+                        <div class="parts-bin">
+                            <h3>Available Parts</h3>
+                            <div class="parts-list" id="parts-list">
+                                <!-- Parts will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="craft-preview">
+                            <h3>Your Spacecraft</h3>
+                            <div class="preview-container" id="craft-preview">
+                                <!-- Spacecraft preview will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-panel" id="stats-panel">
+                        <h3>Spacecraft Stats</h3>
+                        <div class="stat-item">
+                            <span>Thrust:</span>
+                            <span id="thrust-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Weight:</span>
+                            <span id="weight-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Estimated Cost:</span>
+                            <span id="cost-value">$0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Max Altitude:</span>
+                            <span id="altitude-value">0 km</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="innovation-panel">
+                    <h2>Innovation Board</h2>
+                    <div class="innovations" id="innovations">
+                        <!-- Innovations will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="launch-section">
+                <button id="launch-btn" class="launch-btn">LAUNCH SPACECRAFT</button>
+                <div class="launch-animation" id="launch-animation">
+                    <!-- Launch animation will be shown here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="resources-panel">
+            <h2>Learning Resources</h2>
+            <div class="resource-list" id="resource-list">
+                <!-- Resources will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>Project Leave Earth - Exploring affordable space travel concepts</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
