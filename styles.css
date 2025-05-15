@@ -959,7 +959,7 @@ footer {
 }
 
 .stage-description li:before {
-    content: 'u2022';
+    content: '\2022';
     color: #00ccff;
     position: absolute;
     left: 0;
