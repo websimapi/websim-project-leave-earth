@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Leave Earth</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- 3D Physics Libraries -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/",
+                "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -30,10 +40,9 @@
                 </div>
             </div>
             
-            <!-- New Underwater Launch System Section -->
             <div class="underwater-launch-section">
-                <h2>Underwater Launch System</h2>
-                <p>A revolutionary two-stage propulsion system that begins at the ocean floor.</p>
+                <h2>Underwater Launch System - Physics Simulation</h2>
+                <p>A physically accurate two-stage propulsion system that begins at the ocean floor, modeled with real-world physics.</p>
                 
                 <div class="underwater-diagram-container">
                     <div class="diagram-image" id="underwater-diagram">
@@ -75,7 +84,7 @@
                 </div>
                 
                 <div class="launch-simulator-container">
-                    <h3>Two-Stage Launch Simulator</h3>
+                    <h3>Physics-Based Two-Stage Launch Simulator</h3>
                     <div class="simulator-controls">
                         <div class="control-group">
                             <label for="water-temp">Water Temperature (°C):</label>
@@ -101,17 +110,30 @@
                             <span id="salt-mixture-value">5</span>
                         </div>
                         
-                        <button id="simulate-launch" class="action-btn">Simulate Launch</button>
+                        <div class="control-group">
+                            <label for="ocean-depth">Ocean Depth (m):</label>
+                            <input type="range" id="ocean-depth" min="100" max="2000" value="500" class="slider">
+                            <span id="ocean-depth-value">500 m</span>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="water-density">Water Density (kg/m³):</label>
+                            <input type="range" id="water-density" min="1000" max="1100" value="1025" class="slider">
+                            <span id="water-density-value">1025 kg/m³</span>
+                        </div>
+                        
+                        <button id="simulate-launch" class="action-btn">Run Physics Simulation</button>
                     </div>
                     
                     <div class="simulation-display">
-                        <div class="simulation-visuals" id="launch-simulation-container">
-                            <!-- Launch simulation will appear here -->
+                        <div class="physics-simulation-visuals" id="physics-simulation-container">
+                            <!-- 3D Physics simulation will render here -->
+                            <div class="loading-message">Loading 3D Physics Engine...</div>
                         </div>
                         
                         <div class="simulation-data">
                             <div class="data-panel">
-                                <h4>Flight Data</h4>
+                                <h4>Physics Data</h4>
                                 <div class="data-row">
                                     <span>Current Phase:</span>
                                     <span id="current-phase">Preparation</span>
@@ -125,8 +147,24 @@
                                     <span id="current-velocity">0 m/s</span>
                                 </div>
                                 <div class="data-row">
-                                    <span>Stage 1 Efficiency:</span>
-                                    <span id="stage1-efficiency">0%</span>
+                                    <span>Acceleration:</span>
+                                    <span id="current-acceleration">0 m/s²</span>
+                                </div>
+                                <div class="data-row">
+                                    <span>Thrust:</span>
+                                    <span id="current-thrust">0 N</span>
+                                </div>
+                                <div class="data-row">
+                                    <span>Drag Force:</span>
+                                    <span id="current-drag">0 N</span>
+                                </div>
+                                <div class="data-row">
+                                    <span>Water Pressure:</span>
+                                    <span id="current-water-pressure">0 MPa</span>
+                                </div>
+                                <div class="data-row">
+                                    <span>Stage 1 Status:</span>
+                                    <span id="stage1-status">Standby</span>
                                 </div>
                                 <div class="data-row">
                                     <span>Stage 2 Status:</span>
@@ -138,7 +176,6 @@
                 </div>
             </div>
             
-            <!-- AI Scanner Section -->
             <div class="ai-scanner-section">
                 <h2>AI Material Analysis</h2>
                 <p>Scan everyday objects to discover how they could be repurposed for spacecraft components.</p>
@@ -163,7 +200,6 @@
                 </div>
             </div>
             
-            <!-- Roadmap Section -->
             <div class="roadmap-section">
                 <h2>Your Path to Space</h2>
                 <p>AI-generated step-by-step guidance customized to your resources and goals.</p>
@@ -246,7 +282,6 @@
             </div>
         </div>
         
-        <!-- Alternative Systems Section -->
         <div class="alt-systems-panel">
             <h2>Alternative Systems</h2>
             <p>Explore unconventional approaches to spacecraft systems with multiple backup options.</p>
@@ -311,7 +346,7 @@
         </footer>
     </div>
     
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>

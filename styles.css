@@ -1239,3 +1239,150 @@ footer {
         opacity: 0;
     }
 }
+
+/* Physics Simulation Styles */
+.physics-simulation-visuals {
+    background: #001832;
+    border-radius: 8px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #00ccff;
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.3) inset;
+}
+
+.loading-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00ccff;
+    font-size: 1.2rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #00ccff;
+}
+
+.success-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #00ff88;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #00ff88;
+    text-align: center;
+    z-index: 100;
+    max-width: 80%;
+}
+
+.success-message h3 {
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+
+.failure-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #ff5050;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ff5050;
+    text-align: center;
+    z-index: 100;
+    max-width: 80%;
+}
+
+.failure-message h3 {
+    color: #ff5050;
+    margin-bottom: 10px;
+}
+
+/* Enhanced Data Panel Styles */
+.data-panel {
+    background: rgba(0, 12, 24, 0.8);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #00ccff;
+    flex-grow: 1;
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.2) inset;
+}
+
+.data-panel h4 {
+    color: #00ccff;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #00ccff;
+    padding-bottom: 0.5rem;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px dotted #004466;
+    padding-bottom: 0.75rem;
+}
+
+.data-row:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.data-row span:first-child {
+    color: #aaccff;
+}
+
+.data-row span:last-child {
+    color: #ffffff;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+/* Enhanced Slider Styles */
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #002244, #00ccff);
+    outline: none;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00ccff, #0077ff);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 204, 255, 0.8);
+    border: 2px solid #ffffff;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00ccff, #0077ff);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 204, 255, 0.8);
+    border: 2px solid #ffffff;
+}
