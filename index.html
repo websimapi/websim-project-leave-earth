@@ -30,7 +30,115 @@
                 </div>
             </div>
             
-            <!-- New AI Scanner Section -->
+            <!-- New Underwater Launch System Section -->
+            <div class="underwater-launch-section">
+                <h2>Underwater Launch System</h2>
+                <p>A revolutionary two-stage propulsion system that begins at the ocean floor.</p>
+                
+                <div class="underwater-diagram-container">
+                    <div class="diagram-image" id="underwater-diagram">
+                        <!-- Diagram will be inserted here -->
+                    </div>
+                    
+                    <div class="diagram-explanation">
+                        <h3>How It Works</h3>
+                        <div class="stage-description">
+                            <h4>Preparation Phase</h4>
+                            <p>The spacecraft is positioned at the ocean floor with laser heating systems targeting the water chamber. The deep ocean provides:</p>
+                            <ul>
+                                <li>Natural pressure containment for the heating process</li>
+                                <li>Abundant water for conversion to superheated steam</li>
+                                <li>Heat sink for the intense thermal energy generated</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="stage-description">
+                            <h4>Stage 1: Steam Propulsion</h4>
+                            <p>When optimal temperature and pressure are reached, the craft is released from its moorings. The pressurized steam provides:</p>
+                            <ul>
+                                <li>Initial thrust to break the water surface</li>
+                                <li>Continued acceleration to reach minimum altitude of 3,000+ feet</li>
+                                <li>At apex, the stage 1 components detach, significantly reducing weight</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="stage-description">
+                            <h4>Stage 2: Salt Combustion</h4>
+                            <p>The craft continues with its second propulsion system:</p>
+                            <ul>
+                                <li>A separate chamber containing pre-heated combustible salts ignites</li>
+                                <li>Provides high-energy thrust for orbital insertion</li>
+                                <li>Clean-burning with minimal environmental impact</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="launch-simulator-container">
+                    <h3>Two-Stage Launch Simulator</h3>
+                    <div class="simulator-controls">
+                        <div class="control-group">
+                            <label for="water-temp">Water Temperature (°C):</label>
+                            <input type="range" id="water-temp" min="0" max="500" value="100" class="slider">
+                            <span id="water-temp-value">100°C</span>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="water-pressure">Stage 1 Pressure (MPa):</label>
+                            <input type="range" id="water-pressure" min="1" max="50" value="10" class="slider">
+                            <span id="water-pressure-value">10 MPa</span>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="salt-temperature">Salt Temperature (°C):</label>
+                            <input type="range" id="salt-temperature" min="500" max="2000" value="1000" class="slider">
+                            <span id="salt-temperature-value">1000°C</span>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="salt-mixture">Salt Mixture Ratio:</label>
+                            <input type="range" id="salt-mixture" min="1" max="10" value="5" class="slider">
+                            <span id="salt-mixture-value">5</span>
+                        </div>
+                        
+                        <button id="simulate-launch" class="action-btn">Simulate Launch</button>
+                    </div>
+                    
+                    <div class="simulation-display">
+                        <div class="simulation-visuals" id="launch-simulation-container">
+                            <!-- Launch simulation will appear here -->
+                        </div>
+                        
+                        <div class="simulation-data">
+                            <div class="data-panel">
+                                <h4>Flight Data</h4>
+                                <div class="data-row">
+                                    <span>Current Phase:</span>
+                                    <span id="current-phase">Preparation</span>
+                                </div>
+                                <div class="data-row">
+                                    <span>Altitude:</span>
+                                    <span id="current-altitude">0 m</span>
+                                </div>
+                                <div class="data-row">
+                                    <span>Velocity:</span>
+                                    <span id="current-velocity">0 m/s</span>
+                                </div>
+                                <div class="data-row">
+                                    <span>Stage 1 Efficiency:</span>
+                                    <span id="stage1-efficiency">0%</span>
+                                </div>
+                                <div class="data-row">
+                                    <span>Stage 2 Status:</span>
+                                    <span id="stage2-status">Standby</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Scanner Section -->
             <div class="ai-scanner-section">
                 <h2>AI Material Analysis</h2>
                 <p>Scan everyday objects to discover how they could be repurposed for spacecraft components.</p>
@@ -174,6 +282,7 @@
                         <li>Electromagnetic tethers for orbital maneuvers</li>
                         <li>Solar thermal propulsion for deep space</li>
                         <li>Modified automotive engines for first-stage propulsion</li>
+                        <li>Underwater steam launch with salt combustion second stage</li>
                     </ul>
                 </div>
                 

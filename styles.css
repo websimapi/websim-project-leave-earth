@@ -871,3 +871,371 @@ footer {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Underwater Launch System Styles */
+.underwater-launch-section {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.2);
+    border: 1px solid #333;
+    margin-bottom: 2rem;
+    grid-column: 1 / -1;
+}
+
+.underwater-launch-section h2 {
+    color: #00ccff;
+    margin-bottom: 1rem;
+}
+
+.underwater-launch-section p {
+    margin-bottom: 1.5rem;
+}
+
+.underwater-diagram-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .underwater-diagram-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.diagram-image {
+    background: #0a0a0a;
+    border-radius: 8px;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.diagram-explanation {
+    background: rgba(15, 15, 15, 0.8);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #333;
+}
+
+.diagram-explanation h3 {
+    color: #00ccff;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.stage-description {
+    margin-bottom: 1.5rem;
+}
+
+.stage-description h4 {
+    color: #ddd;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    border-left: 3px solid #00ccff;
+    padding-left: 10px;
+}
+
+.stage-description p {
+    margin-bottom: 0.5rem;
+}
+
+.stage-description ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+.stage-description li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.stage-description li:before {
+    content: 'u2022';
+    color: #00ccff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.launch-simulator-container {
+    background: rgba(15, 15, 15, 0.8);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #333;
+}
+
+.launch-simulator-container h3 {
+    color: #00ccff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.simulator-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .simulator-controls {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.control-group {
+    margin-bottom: 1rem;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ddd;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: #333;
+    outline: none;
+    margin-bottom: 0.5rem;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00ccff;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00ccff;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+    border: none;
+}
+
+.simulation-display {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .simulation-display {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.simulation-visuals {
+    background: #0a0a0a;
+    border-radius: 8px;
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+.simulation-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.data-panel {
+    background: rgba(10, 10, 10, 0.8);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #333;
+    flex-grow: 1;
+}
+
+.data-panel h4 {
+    color: #00ccff;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px dotted #333;
+    padding-bottom: 0.75rem;
+}
+
+.data-row:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.data-row span:first-child {
+    color: #aaa;
+}
+
+.data-row span:last-child {
+    color: #ddd;
+    font-weight: bold;
+}
+
+/* Underwater Launch Animation Elements */
+.ocean-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #001e3c, #00060f);
+    z-index: 1;
+}
+
+.ocean-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #332211;
+    z-index: 2;
+}
+
+.water-surface {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(0, 150, 220, 0.6), rgba(0, 100, 180, 0.4));
+    z-index: 4;
+}
+
+.underwater-vehicle {
+    position: absolute;
+    width: 60px;
+    height: 120px;
+    background: #999;
+    border-radius: 10px 10px 0 0;
+    z-index: 3;
+    transition: bottom 0.5s ease-in-out;
+    bottom: 50px; /* Start at ocean floor */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.heating-chamber {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 30px;
+    background: #cc3300;
+    border-radius: 0 0 20px 20px;
+}
+
+.laser-beam {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(255, 50, 50, 0), rgba(255, 50, 50, 1));
+    z-index: 2;
+    opacity: 0;
+}
+
+.bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: rise 4s infinite ease-in;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-300px) scale(2);
+        opacity: 0;
+    }
+}
+
+.steam-effect {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 60px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    border-radius: 20px;
+    opacity: 0;
+    z-index: 3;
+}
+
+.salt-combustion {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 40px;
+    background: linear-gradient(to top, rgba(255, 200, 50, 0.8), rgba(255, 100, 50, 0));
+    border-radius: 20px;
+    opacity: 0;
+    z-index: 3;
+}
+
+.jettison-piece {
+    position: absolute;
+    background: #777;
+    border-radius: 5px;
+    z-index: 3;
+    transform-origin: center;
+    animation: fall 3s forwards ease-in;
+}
+
+@keyframes fall {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--fall-x), var(--fall-y)) rotate(var(--fall-rotate));
+        opacity: 0;
+    }
+}

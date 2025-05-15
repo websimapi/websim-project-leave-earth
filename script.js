@@ -150,6 +150,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const generateRoadmapBtn = document.getElementById('generate-roadmap-btn');
     const roadmapResults = document.getElementById('roadmap-results');
 
+    // New references for underwater launch system
+    const waterTempSlider = document.getElementById('water-temp');
+    const waterTempValue = document.getElementById('water-temp-value');
+    const waterPressureSlider = document.getElementById('water-pressure');
+    const waterPressureValue = document.getElementById('water-pressure-value');
+    const saltTempSlider = document.getElementById('salt-temperature');
+    const saltTempValue = document.getElementById('salt-temperature-value');
+    const saltMixtureSlider = document.getElementById('salt-mixture');
+    const saltMixtureValue = document.getElementById('salt-mixture-value');
+    const simulateLaunchBtn = document.getElementById('simulate-launch');
+    const launchSimulationContainer = document.getElementById('launch-simulation-container');
+    const currentPhaseDisplay = document.getElementById('current-phase');
+    const currentAltitudeDisplay = document.getElementById('current-altitude');
+    const currentVelocityDisplay = document.getElementById('current-velocity');
+    const stage1EfficiencyDisplay = document.getElementById('stage1-efficiency');
+    const stage2StatusDisplay = document.getElementById('stage2-status');
+    const underwaterDiagram = document.getElementById('underwater-diagram');
+
     // Spacecraft configuration
     let craftConfiguration = {
         parts: [],
@@ -281,6 +299,344 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             resourceList.appendChild(resourceItem);
         });
+    }
+
+    // Initialize the underwater launch system diagram
+    function initUnderwaterLaunchSystem() {
+        // Check if the elements exist
+        if (!underwaterDiagram) return;
+
+        // Add the diagram image
+        underwaterDiagram.innerHTML = `<img src="underwater-launch-diagram.png" alt="Underwater Launch System Diagram" style="max-width: 100%; max-height: 300px;">`;
+
+        // Initialize the sliders
+        if (waterTempSlider && waterTempValue) {
+            waterTempSlider.addEventListener('input', () => {
+                waterTempValue.textContent = `${waterTempSlider.value}°C`;
+            });
+        }
+
+        if (waterPressureSlider && waterPressureValue) {
+            waterPressureSlider.addEventListener('input', () => {
+                waterPressureValue.textContent = `${waterPressureSlider.value} MPa`;
+            });
+        }
+
+        if (saltTempSlider && saltTempValue) {
+            saltTempSlider.addEventListener('input', () => {
+                saltTempValue.textContent = `${saltTempSlider.value}°C`;
+            });
+        }
+
+        if (saltMixtureSlider && saltMixtureValue) {
+            saltMixtureSlider.addEventListener('input', () => {
+                saltMixtureValue.textContent = saltMixtureSlider.value;
+            });
+        }
+
+        // Initialize the simulate launch button
+        if (simulateLaunchBtn) {
+            simulateLaunchBtn.addEventListener('click', simulateUnderwaterLaunch);
+        }
+    }
+
+    // Simulate underwater launch
+    function simulateUnderwaterLaunch() {
+        if (!launchSimulationContainer) return;
+
+        // Get the values from the sliders
+        const waterTemp = parseInt(waterTempSlider.value);
+        const waterPressure = parseInt(waterPressureSlider.value);
+        const saltTemp = parseInt(saltTempSlider.value);
+        const saltMixture = parseInt(saltMixtureSlider.value);
+
+        // Calculate the stage 1 efficiency based on water temp and pressure
+        // This is a simplified model - in reality, the physics would be more complex
+        const stage1Efficiency = Math.min(100, (waterTemp / 5) + (waterPressure * 1.5));
+
+        // Calculate whether stage 2 will activate successfully based on salt temp and mixture
+        const stage2Success = saltTemp >= 1000 && saltMixture >= 4;
+
+        // Calculate max altitude based on the efficiencies
+        let maxAltitude = 0;
+        if (stage1Efficiency >= 50) {
+            maxAltitude = 3000 + (stage1Efficiency - 50) * 100; // Minimum 3000ft as stated in the prompt
+
+            if (stage2Success) {
+                maxAltitude += (saltTemp / 10) * (saltMixture / 2) * 1000;
+            }
+        }
+
+        // Setup the simulation container
+        launchSimulationContainer.innerHTML = '';
+        launchSimulationContainer.style.height = '400px';
+
+        // Create the ocean environment
+        const oceanBackground = document.createElement('div');
+        oceanBackground.className = 'ocean-background';
+        launchSimulationContainer.appendChild(oceanBackground);
+
+        // Create the ocean floor
+        const oceanFloor = document.createElement('div');
+        oceanFloor.className = 'ocean-floor';
+        launchSimulationContainer.appendChild(oceanFloor);
+
+        // Create the water surface
+        const waterSurface = document.createElement('div');
+        waterSurface.className = 'water-surface';
+        launchSimulationContainer.appendChild(waterSurface);
+
+        // Create the underwater vehicle
+        const underwaterVehicle = document.createElement('div');
+        underwaterVehicle.className = 'underwater-vehicle';
+        launchSimulationContainer.appendChild(underwaterVehicle);
+
+        // Create the heating chamber
+        const heatingChamber = document.createElement('div');
+        heatingChamber.className = 'heating-chamber';
+        underwaterVehicle.appendChild(heatingChamber);
+
+        // Create the laser beam
+        const laserBeam = document.createElement('div');
+        laserBeam.className = 'laser-beam';
+        launchSimulationContainer.appendChild(laserBeam);
+
+        // Create the bubbles container
+        const bubbles = document.createElement('div');
+        bubbles.className = 'bubbles';
+        launchSimulationContainer.appendChild(bubbles);
+
+        // Create the steam effect
+        const steamEffect = document.createElement('div');
+        steamEffect.className = 'steam-effect';
+        underwaterVehicle.appendChild(steamEffect);
+
+        // Create the salt combustion effect
+        const saltCombustion = document.createElement('div');
+        saltCombustion.className = 'salt-combustion';
+        underwaterVehicle.appendChild(saltCombustion);
+
+        // Start the simulation
+        let phase = 'preparation';
+        let altitude = 0;
+        let velocity = 0;
+        let time = 0;
+
+        // Update displays
+        currentPhaseDisplay.textContent = 'Preparation';
+        currentAltitudeDisplay.textContent = '0 m';
+        currentVelocityDisplay.textContent = '0 m/s';
+        stage1EfficiencyDisplay.textContent = `${Math.round(stage1Efficiency)}%`;
+        stage2StatusDisplay.textContent = 'Standby';
+
+        // Simulation interval
+        const simulationInterval = setInterval(() => {
+            time += 0.1; // 100ms in simulation time
+
+            // Phase 1: Preparation (heating)
+            if (phase === 'preparation') {
+                // Show laser beam and gradually increase opacity
+                laserBeam.style.opacity = Math.min(1, time / 3);
+                heatingChamber.style.backgroundColor = `rgb(${Math.min(255, 204 + time * 20)}, ${Math.max(0, 51 - time * 10)}, 0)`;
+
+                // Create bubbles randomly
+                if (Math.random() > 0.7) {
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    bubble.style.width = `${Math.random() * 10 + 5}px`;
+                    bubble.style.height = bubble.style.width;
+                    bubble.style.left = `${Math.random() * 80 + 10}%`;
+                    bubble.style.bottom = `${Math.random() * 50 + 50}px`;
+                    bubbles.appendChild(bubble);
+
+                    // Remove bubble after animation
+                    setTimeout(() => bubble.remove(), 4000);
+                }
+
+                // Update displays
+                currentPhaseDisplay.textContent = 'Heating Water Chamber';
+
+                // After 5 seconds, move to the next phase
+                if (time > 5) {
+                    phase = 'release';
+                    time = 0;
+                }
+            }
+            // Phase 2: Release and Stage 1 (Steam Propulsion)
+            else if (phase === 'release') {
+                // Hide laser beam
+                laserBeam.style.opacity = Math.max(0, 1 - time);
+
+                // Show steam effect
+                steamEffect.style.opacity = Math.min(1, time);
+
+                // Move the vehicle upward
+                const newBottom = 50 + time * 30 * (stage1Efficiency / 100);
+                underwaterVehicle.style.bottom = `${newBottom}px`;
+
+                // Calculate altitude and velocity
+                altitude = Math.max(0, newBottom - 80); // 80px is water surface position
+                velocity = 30 * (stage1Efficiency / 100);
+
+                // Update displays
+                currentPhaseDisplay.textContent = altitude < 0 ? 'Underwater Ascent' : 'Stage 1: Steam Propulsion';
+                currentAltitudeDisplay.textContent = `${Math.round(altitude * 10)} m`;
+                currentVelocityDisplay.textContent = `${Math.round(velocity * 10)} m/s`;
+
+                // If the vehicle has reached a certain altitude, jettison stage 1 components
+                if (altitude > 200) {
+                    phase = 'jettison';
+                    time = 0;
+                }
+            }
+            // Phase 3: Jettison Stage 1
+            else if (phase === 'jettison') {
+                // Create jettison effect - falling parts
+                if (time < 0.5) {
+                    // Create several falling parts
+                    for (let i = 0; i < 5; i++) {
+                        const jettison = document.createElement('div');
+                        jettison.className = 'jettison-piece';
+                        jettison.style.width = `${Math.random() * 15 + 5}px`;
+                        jettison.style.height = `${Math.random() * 15 + 5}px`;
+                        jettison.style.bottom = `${underwaterVehicle.style.bottom}`;
+                        jettison.style.left = `${Math.random() * 20 + 40}%`;
+
+                        // Random fall direction and rotation
+                        const fallX = (Math.random() * 200 - 100) + 'px';
+                        const fallY = (Math.random() * -100 - 100) + 'px';
+                        const fallRotate = (Math.random() * 720 - 360) + 'deg';
+                        jettison.style.setProperty('--fall-x', fallX);
+                        jettison.style.setProperty('--fall-y', fallY);
+                        jettison.style.setProperty('--fall-rotate', fallRotate);
+
+                        launchSimulationContainer.appendChild(jettison);
+                    }
+
+                    // Modify the vehicle to look smaller (stage 2 only)
+                    underwaterVehicle.style.width = '40px';
+                    underwaterVehicle.style.height = '80px';
+
+                    // Hide steam effect
+                    steamEffect.style.opacity = 0;
+                }
+
+                // Continue moving upward but slower
+                const currentBottom = parseFloat(underwaterVehicle.style.bottom);
+                underwaterVehicle.style.bottom = `${currentBottom + 2}px`;
+
+                // Update altitude and velocity
+                altitude = Math.max(0, currentBottom - 80);
+                velocity = Math.max(0, velocity - 5);
+
+                // Update displays
+                currentPhaseDisplay.textContent = 'Stage 1 Separation';
+                currentAltitudeDisplay.textContent = `${Math.round(altitude * 10)} m`;
+                currentVelocityDisplay.textContent = `${Math.round(velocity * 10)} m/s`;
+
+                // After 2 seconds, move to the next phase
+                if (time > 2) {
+                    phase = 'stage2';
+                    time = 0;
+                    stage2StatusDisplay.textContent = stage2Success ? 'Ignition' : 'Failure';
+                }
+            }
+            // Phase 4: Stage 2 (Salt Combustion)
+            else if (phase === 'stage2') {
+                // If stage 2 is successful, continue upward with salt combustion
+                if (stage2Success) {
+                    // Show salt combustion effect
+                    saltCombustion.style.opacity = Math.min(1, time);
+
+                    // Move the vehicle upward faster
+                    const currentBottom = parseFloat(underwaterVehicle.style.bottom);
+                    const newBottom = currentBottom + time * 10;
+                    underwaterVehicle.style.bottom = `${newBottom}px`;
+
+                    // Calculate altitude and velocity
+                    altitude = Math.max(0, newBottom - 80);
+                    velocity = 10 + time * 15; // Accelerating
+
+                    // Update displays
+                    currentPhaseDisplay.textContent = 'Stage 2: Salt Combustion';
+                    currentAltitudeDisplay.textContent = `${Math.round(altitude * 10)} m`;
+                    currentVelocityDisplay.textContent = `${Math.round(velocity * 10)} m/s`;
+                    stage2StatusDisplay.textContent = 'Burning';
+
+                    // If the vehicle has gone off-screen, end the simulation
+                    if (newBottom > 500) {
+                        clearInterval(simulationInterval);
+
+                        // Show final results
+                        currentPhaseDisplay.textContent = 'Mission Complete';
+                        currentAltitudeDisplay.textContent = `${Math.round(maxAltitude)} m`;
+                        stage2StatusDisplay.textContent = 'Success';
+
+                        // Add success message
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'success-message';
+                        successMessage.innerHTML = `
+                            <h3>Mission Successful!</h3>
+                            <p>Two-stage propulsion achieved a maximum altitude of ${Math.round(maxAltitude)} meters</p>
+                            <p>This innovative approach shows great promise for affordable space access!</p>
+                        `;
+                        successMessage.style.position = 'absolute';
+                        successMessage.style.top = '50%';
+                        successMessage.style.left = '50%';
+                        successMessage.style.transform = 'translate(-50%, -50%)';
+                        successMessage.style.background = 'rgba(0, 0, 0, 0.8)';
+                        successMessage.style.padding = '20px';
+                        successMessage.style.borderRadius = '10px';
+                        successMessage.style.color = '#fff';
+                        successMessage.style.textAlign = 'center';
+                        successMessage.style.zIndex = '10';
+                        launchSimulationContainer.appendChild(successMessage);
+                    }
+                }
+                // If stage 2 fails, start falling
+                else {
+                    // Move the vehicle downward
+                    const currentBottom = parseFloat(underwaterVehicle.style.bottom);
+                    const newBottom = Math.max(50, currentBottom - time * 5);
+                    underwaterVehicle.style.bottom = `${newBottom}px`;
+
+                    // Calculate altitude and velocity
+                    altitude = Math.max(0, newBottom - 80);
+                    velocity = -time * 10; // Decelerating/falling
+
+                    // Update displays
+                    currentPhaseDisplay.textContent = 'Stage 2 Failure';
+                    currentAltitudeDisplay.textContent = `${Math.round(altitude * 10)} m`;
+                    currentVelocityDisplay.textContent = `${Math.round(velocity * 10)} m/s`;
+
+                    // If the vehicle has reached the ground/water, end the simulation
+                    if (newBottom <= 80) {
+                        clearInterval(simulationInterval);
+
+                        // Show failure message
+                        const failureMessage = document.createElement('div');
+                        failureMessage.className = 'failure-message';
+                        failureMessage.innerHTML = `
+                            <h3>Stage 2 Failure</h3>
+                            <p>Salt combustion did not ignite properly</p>
+                            <p>Suggestion: Increase salt temperature to at least 1000°C and mixture ratio to at least 4</p>
+                        `;
+                        failureMessage.style.position = 'absolute';
+                        failureMessage.style.top = '50%';
+                        failureMessage.style.left = '50%';
+                        failureMessage.style.transform = 'translate(-50%, -50%)';
+                        failureMessage.style.background = 'rgba(0, 0, 0, 0.8)';
+                        failureMessage.style.padding = '20px';
+                        failureMessage.style.borderRadius = '10px';
+                        failureMessage.style.color = '#ff5050';
+                        failureMessage.style.textAlign = 'center';
+                        failureMessage.style.zIndex = '10';
+                        launchSimulationContainer.appendChild(failureMessage);
+                    }
+                }
+            }
+
+        }, 100); // Update every 100ms
     }
 
     // Launch animation
@@ -783,5 +1139,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initPartsList();
     initInnovations();
     initResources();
+    initUnderwaterLaunchSystem(); // Initialize the new underwater launch system
     updateStats();
 });
